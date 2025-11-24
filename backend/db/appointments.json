@@ -1,2 +1,58 @@
-[]
-
+[
+  {
+    "id": "APPT-F3178B",
+    "appointment_type": "general",
+    "date": "2025-11-21",
+    "start_time": "15:00",
+    "end_time": "15:30",
+    "patient": {
+      "name": "monish v",
+      "email": "kg123@gmail.com",
+      "phone": "1526256562"
+    },
+    "reason": "cold",
+    "confirmation_code": "GAGTQK"
+  },
+  {
+    "id": "APPT-A3D163",
+    "appointment_type": "general",
+    "date": "2025-11-21",
+    "start_time": "14:00",
+    "end_time": "14:30",
+    "patient": {
+      "name": "Monish",
+      "email": "abc101@gmail.com",
+      "phone": "14632941"
+    },
+    "reason": "cold",
+    "confirmation_code": "ZEDSX9"
+  },
+  {
+    "id": "APPT-EBB3CA",
+    "appointment_type": "followup",
+    "date": "2025-11-20",
+    "start_time": "09:00",
+    "end_time": "09:15",
+    "patient": {
+      "name": "raj",
+      "email": "bda123@gmail.com",
+      "phone": "12649553"
+    },
+    "reason": "fever",
+    "confirmation_code": "PHCDS7"
+  },
+  {
+    "id": "APPT-99806A",
+    "appointment_type": "general",
+    "date": "2025-11-20",
+    "start_time": "09:30",
+    "end_time": "10:00",
+    "patient": {
+      "name": "ben",
+      "email": "ben123@example.com",
+      "phone": "85845225665"
+    },
+    "reason": "bodypain",
+    "confirmation_code": "LY8DND"
+  }
+]

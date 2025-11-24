@@ -10,6 +10,7 @@ APPOINTMENT_TYPES = {
     "followup": 15,
     "physical": 45,
     "specialist": 60,
+    "general": 30,
 }
 
 
