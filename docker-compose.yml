@@ -1,0 +1,9 @@
+services:
+  medical_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medical_app
+    ports:
+      - "8000:8000"
+    restart: always

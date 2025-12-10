@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 
 from backend.db.database import APPOINTMENT_TYPES
 from backend.models.schemas import (
@@ -9,12 +9,17 @@ from backend.models.schemas import (
 )
 from backend.tools.availability_tool import generate_daily_slots
 from backend.tools.booking_tool import book_appointment
+from backend.utils.jwt_handler import verify_token   # ← Add this
 
 router = APIRouter(prefix="/api/calendly")
 
 
 @router.get("/availability", response_model=AvailabilityResponse)
-def get_availability(date: str, appointment_type: str):
+def get_availability(
+    date: str,
+    appointment_type: str,
+    user=Depends(verify_token),                # ← Protect this route
+):
     if appointment_type not in APPOINTMENT_TYPES:
         raise HTTPException(status_code=400, detail="Invalid appointment type")
 
@@ -27,7 +32,10 @@ def get_availability(date: str, appointment_type: str):
 
 
 @router.post("/book", response_model=BookingResponse)
-def book(data: BookingRequest):
+def book(
+    data: BookingRequest,
+    user=Depends(verify_token),                # ← Protect this route
+):
     try:
         result = book_appointment(data)
     except ValueError as exc:
@@ -39,4 +47,3 @@ def book(data: BookingRequest):
         confirmation_code=result["confirmation_code"],
         details=result,
     )
-

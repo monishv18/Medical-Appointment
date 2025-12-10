@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "medical-appointment-backend"
+version = "0.1.0"
+description = "Medical Appointment Scheduling Agent backend with FastAPI and PostgreSQL"
+authors = ["Monis <you@example.com>"]
+readme = "README.md"
+packages = [{ include = "backend" }]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.115.0"
+uvicorn = { extras = ["standard"], version = "^0.30.0" }
+pydantic = { extras = ["email"], version = "^2.9.0" }
+python-dotenv = "^1.0.1"
+sqlalchemy = "^2.0.0"
+psycopg2-binary = "^2.9.0"
+python-jose = "^3.3.0"
+passlib = { extras = ["bcrypt"], version = "^1.7.4" }
+requests = "^2.32.0"
+PyJWT = "^2.8.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.0.0"
+isort = "^5.13.0"
+ruff = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
