@@ -33,3 +33,24 @@ class BookingResponse(BaseModel):
     confirmation_code: str
     details: dict
 
+
+class RescheduleRequest(BaseModel):
+    appointment_id: str
+    appointment_type: str
+    date: str
+    start_time: str
+    reason: str | None = None
+
+
+class RescheduleResponse(BaseModel):
+    booking_id: str
+    status: str
+    confirmation_code: str
+    details: dict
+
+
+class DeleteResponse(BaseModel):
+    booking_id: str
+    status: str
+    message: str
+
