@@ -16,6 +16,9 @@ def generate_confirmation_code() -> str:
 def book_appointment(data):
     appointments = load_appointments()
 
+    if data.appointment_type not in APPOINTMENT_TYPES:
+        raise ValueError("Invalid appointment type")
+    
     duration = APPOINTMENT_TYPES[data.appointment_type]
     start = data.start_time
     end_dt = int(start.split(":")[0]) * 60 + int(start.split(":")[1]) + duration
@@ -36,7 +39,7 @@ def book_appointment(data):
         "date": data.date,
         "start_time": start,
         "end_time": end,
-        "patient": data.patient.dict(),
+        "patient": data.patient.model_dump(),
         "reason": data.reason,
         "confirmation_code": confirmation,
     }
@@ -68,6 +71,9 @@ def reschedule_appointment(data):
     if target is None:
         raise ValueError("Appointment not found")
 
+    if data.appointment_type not in APPOINTMENT_TYPES:
+        raise ValueError("Invalid appointment type")
+    
     duration = APPOINTMENT_TYPES[data.appointment_type]
     start = data.start_time
     end_dt = int(start.split(":")[0]) * 60 + int(start.split(":")[1]) + duration

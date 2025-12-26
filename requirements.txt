@@ -7,3 +7,7 @@ psycopg2-binary
 python-jose
 passlib[bcrypt]
 requests
+pytest
+httpx
+pytest-asyncio
+pytest-cov

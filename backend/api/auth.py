@@ -5,7 +5,7 @@ from backend.models.auth_schemas import LoginRequest, TokenResponse, RefreshRequ
 from backend.utils.jwt_handler import (
     create_access_token,
     create_refresh_token,
-    verify_token
+    decode_token
 )
 
 router = APIRouter(prefix="/api/auth")
@@ -16,7 +16,12 @@ router = APIRouter(prefix="/api/auth")
 def login(data: LoginRequest):
 
     # Dummy validation (replace with DB check)
-    if data.username != "admin" or data.password != "admin123":
+    valid_credentials = {
+        "admin": "admin123",
+        "Monish": "MV@2003"
+    }
+    
+    if data.username not in valid_credentials or valid_credentials[data.username] != data.password:
         raise HTTPException(status_code=401, detail="Invalid username or password")
 
     user_data = {"sub": data.username}
@@ -34,7 +39,7 @@ def login(data: LoginRequest):
 @router.post("/refresh", response_model=TokenResponse)
 def refresh_token(data: RefreshRequest):
     try:
-        payload = verify_token(data.refresh_token)
+        payload = decode_token(data.refresh_token)
 
         if payload.get("type") != "refresh":
             raise HTTPException(status_code=401, detail="Invalid refresh token")
